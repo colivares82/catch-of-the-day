@@ -1,0 +1,20 @@
+# Logs
+logs
+*.log
+
+.npmrc
+node_modules
+package-lock.json
+
+
+#IDE configuration files
+.idea
+*.iml
+
+#Builds
+dist
+dev
+
+
+# OS X trash files
+.DS_Store
