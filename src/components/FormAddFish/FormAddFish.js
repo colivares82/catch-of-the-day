@@ -3,20 +3,22 @@ import React from 'react';
 class FormAddFish extends React.Component {
   createFish(event) {
     event.preventDefault();
-    console.log();
     const fish = {
       name: this.name.value,
       price: this.price.value,
       status: this.status.value,
       desc: this.desc.value,
       image: this.image.value
-    }
+    };
     console.log(fish);
+    this.props.addFish(fish);
+    this.fishForm.reset();
   }
 
   render() {
     return (
-      <form onSubmit={(e) => this.createFish(e)}
+      <form ref={(input) => this.fishForm = input}
+            onSubmit={(e) => this.createFish(e)}
             className="fish-edit">
         <input ref={(input) => this.name = input}
                type="text"

@@ -6,7 +6,8 @@ class Invetory extends React.Component {
     return (
       <div>
         <h2>Invetory</h2>
-        <FormAddFish/>
+        <FormAddFish addFish={this.props.addFish}/>
+        <button onClick={this.props.loadSamples}>Load Fishes</button>
       </div>
     )
   }
