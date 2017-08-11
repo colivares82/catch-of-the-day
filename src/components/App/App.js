@@ -4,6 +4,9 @@ import Header from '../Header/Header';
 import Order from '../Order/Order';
 import Inventory from '../Inventory/Invetory';
 import Fish from '../Fish/Fish';
+import base from '../../base/base';
+
+
 
 class App extends React.Component {
   constructor() {
@@ -23,6 +26,41 @@ class App extends React.Component {
       order: {}
     };
   }
+
+  /***************************************************************
+   *          This are Hooks among many others
+   *  https://facebook.github.io/react/docs/react-component.html
+   ******************+*******************************************/
+
+  componentWillMount() {
+    // This runs before App renders
+    this.ref = base.syncState(`${this.props.params.storeId}/fishes`,
+            {
+              context: this,
+              state: 'fishes'
+            });
+
+    const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+
+    if (localStorageRef) {
+      this.setState({
+        order: JSON.parse(localStorageRef)
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Somethins Changed');
+    console.log({nextProps, nextState});
+
+    localStorage.setItem(`order-${this.props.params.storeId}`,
+      JSON.stringify(nextState.order));
+  }
+
 
   loadSamples() {
     this.setState({
@@ -71,7 +109,8 @@ class App extends React.Component {
           </ul>
         </div>
         <Order fishes={this.state.fishes}
-               order={this.state.order}/>
+               order={this.state.order}
+               params={this.props.params}/>
         <Inventory addFish={this.addFish}
                    loadSamples={this.loadSamples}/>
       </div>
