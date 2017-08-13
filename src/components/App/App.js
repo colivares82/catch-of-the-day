@@ -18,6 +18,9 @@ class App extends React.Component {
     this.addFish = this.addFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
+    this.removeFromOrder = this.removeFromOrder.bind(this);
+    this.updateFish = this.updateFish.bind(this);
+    this.removeFish = this.removeFish.bind(this);
     /***********************
      *  Get Initial States
      ******************+****/
@@ -85,12 +88,33 @@ class App extends React.Component {
     this.setState({ fishes })
   }
 
-  addToOrder(key) {
-    const order = {...this.state.order}
-
-    order[key] = order[key] + 1 || 1;
-    this.setState({ order })
+  updateFish(key, updatedFishes) {
+    const fishes = {...this.state.fishes};
+    fishes[key] = updatedFishes;
+    this.setState({ fishes });
   }
+
+  removeFish(key) {
+    const fishes = {...this.state.fishes};
+    fishes[key] = null;
+    this.setState({ fishes });
+  }
+
+  addToOrder(key) {
+    const order = {...this.state.order};
+    order[key] = order[key] + 1 || 1;
+    this.setState({ order });
+  }
+
+  // THE DIFFERENCE ON DELETE and NULL
+  // is that Delete is not taken by FireBase
+  removeFromOrder(key) {
+    const order = {...this.state.order};
+    delete order[key];
+    this.setState({ order });
+  }
+
+
 
   render() {
     return (
@@ -110,9 +134,13 @@ class App extends React.Component {
         </div>
         <Order fishes={this.state.fishes}
                order={this.state.order}
-               params={this.props.params}/>
+               params={this.props.params}
+               removeFromOrder={this.removeFromOrder}/>
         <Inventory addFish={this.addFish}
-                   loadSamples={this.loadSamples}/>
+                   loadSamples={this.loadSamples}
+                   fishes={this.state.fishes}
+                   updateFish={this.updateFish}
+                   removeFish={this.removeFish}/>
       </div>
     )
   }
