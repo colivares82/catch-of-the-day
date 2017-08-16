@@ -24,4 +24,13 @@ const Header = (props) => {
   )
 }
 
+/******************************************************************************
+ *           PropTypes helps to define what data type is requiered
+ *    https://facebook.github.io/react/docs/typechecking-with-proptypes.html
+ * ****************************************************************************/
+
+Header.prototype = {
+  tagline: React.PropTypes.string.isRequired
+}
+
 export default Header;

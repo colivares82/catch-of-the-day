@@ -33,7 +33,10 @@ class StorePicker extends React.Component {
   }
 }
 
-
+/************************************************************************
+ *        This declaration allow to access to the contex which is
+ *  a mean to pass attributes like props and states but more controlled
+ * **********************************************************************/
 StorePicker.contextTypes = {
   router: React.PropTypes.object
 }
