@@ -6,10 +6,10 @@ class StorePicker extends React.Component {
    *    THIS IS A WAY TO DECLARE THE INPUT MODEL
    *             Video 11 Reference
    ***********************************************/
- // constructor() {
- //   super();
- //   this.goToStore = this.goToStore.bind(this)
- // }
+  constructor() {
+    super();
+    this.goToStore = this.goToStore.bind(this)
+  }
 
   goToStore(event) {
     event.preventDefault();
