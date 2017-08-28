@@ -16,7 +16,14 @@ class App extends React.Component {
      *  Expose methods to the scope
      ******************+************/
     this.addFish = this.addFish.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
+    /***********************
+     *  this.loadSamples Commented
+     *  The this.X = this.X.bind(this) will be change in near future
+     *  But is not still defined, go to the method in line #75 to
+     *  see how it works (arrow functions)
+     ******************+****/
+    // this.loadSamples = this.loadSamples.bind(this);
+
     this.addToOrder = this.addToOrder.bind(this);
     this.removeFromOrder = this.removeFromOrder.bind(this);
     this.updateFish = this.updateFish.bind(this);
@@ -65,11 +72,11 @@ class App extends React.Component {
   }
 
 
-  loadSamples() {
+  loadSamples = () => {
     this.setState({
       fishes : sampleFishes
       })
-  }
+  };
 
   addFish(fish) {
      /******************+*********+*********+*********

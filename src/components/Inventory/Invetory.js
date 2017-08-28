@@ -148,15 +148,26 @@ class Invetory extends React.Component {
       </div>
     )
   }
+ static propTypes = {
+    fishes: React.PropTypes.object.isRequired,
+    addFish: React.PropTypes.func.isRequired,
+    removeFish: React.PropTypes.func.isRequired,
+    loadSamples: React.PropTypes.func.isRequired,
+    updateFish: React.PropTypes.func.isRequired,
+    storeId: React.PropTypes.string.isRequired,
+  }
 }
 
-Invetory.propTypes = {
+/***************************************************************************
+ *   Proptyes can be defined inside of the class as static variables
+ ***************************************************************************/
+/*Invetory.propTypes = {
   fishes: React.PropTypes.object.isRequired,
   addFish: React.PropTypes.func.isRequired,
   removeFish: React.PropTypes.func.isRequired,
   loadSamples: React.PropTypes.func.isRequired,
   updateFish: React.PropTypes.func.isRequired,
   storeId: React.PropTypes.string.isRequired,
-}
+}*/
 
 export default Invetory;
